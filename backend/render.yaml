@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: video-tracker-backend
+    env: python
+    region: frankfurt  # elige la más cercana: frankfurt, oregon, ohio, singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URL
+        sync: false   # lo introduces manualmente en el dashboard de Render
+      - key: DB_NAME
+        value: video_tracker
+      - key: JWT_SECRET
+        generateValue: true   # Render genera una clave segura automáticamente
+      - key: CORS_ORIGINS
+        sync: false   # pon aqui la URL de tu frontend en Vercel

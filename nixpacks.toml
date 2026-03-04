@@ -1,5 +1,5 @@
-[providers]
-python = true
+providers = ["python"]
+
 
 [variables]
 NIXPACKS_PYTHON_VERSION = "3.11"
